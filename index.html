@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#06101d"><title>HUTA PLAY — Watch your world</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<style>
+.movies{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:20px}
+.movie iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px}
+.movie h3{margin:10px 0 4px}
+.movie small{opacity:.7}
+</style>
+
+<section class="movies">
+  <div class="movie">
+    <iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="Big Buck Bunny" allowfullscreen loading="lazy"></iframe>
+    <h3>Big Buck Bunny</h3>
+    <small>© Blender Foundation | CC BY 3.0</small>
+  </div>
+  <div class="movie">
+    <iframe src="https://www.youtube.com/embed/eRsGyueVLvQ" title="Sintel" allowfullscreen loading="lazy"></iframe>
+    <h3>Sintel</h3>
+    <small>© Blender Foundation | CC BY 3.0</small>
+  </div>
+  <div class="movie">
+    <iframe src="https://www.youtube.com/embed/R6MlUcmOul8" title="Tears of Steel" allowfullscreen loading="lazy"></iframe>
+    <h3>Tears of Steel</h3>
+    <small>© Blender Foundation | CC BY 3.0</small>
+  </div>
+</section>
+<body>
+<header class="header">
+  <a class="logo" href="#"><span class="logo-icon">H</span><span>HUTA<span class="blue">PLAY</span></span></a>
+  <nav id="nav">
+    <button class="nav active" data-filter="الكل">الرئيسية</button><button class="nav" data-filter="فيلم">أفلام</button>
+    <button class="nav" data-filter="مسلسل">مسلسلات</button><button class="nav" data-filter="أنمي">أنمي</button>
+    <button class="nav" data-filter="مفضلتي">قائمتي</button>
+  </nav>
+  <div class="head-tools"><label class="search"><span>⌕</span><input id="search" placeholder="ابحث عن عنوان..." type="search"></label><button class="user" id="userBtn">H</button></div>
+</header>
+
+<main>
+<section class="hero" id="hero">
+ <div class="hero-bg" id="heroBg"></div><div class="hero-gradient"></div>
+ <div class="hero-copy">
+  <div class="tag"><i></i> HUTA PLAY ORIGINAL EXPERIENCE</div>
+  <div class="hero-mini">ليلتك تستاهل حكاية عظيمة</div>
+  <h1 id="heroTitle">اكتشف عوالم<br><em>ملهاش حدود.</em></h1>
+  <p id="heroDesc">أفلام ومسلسلات وأنمي.. اختار عالمك وابدأ المشاهدة.</p>
+  <div class="hero-ctas"><button class="btn btn-blue" id="explore">استكشف المكتبة <b>←</b></button><button class="btn btn-glass" id="heroAbout">اعرف أكتر</button></div>
+  <div class="hero-tags"><span>4K READY</span><span>أفلام</span><span>مسلسلات</span><span>أنمي</span></div>
+ </div>
+ <div class="hero-dots"><b></b><i></i><i></i><i></i></div>
+ <div class="hero-counter">01 <span>/</span> 04</div>
+</section>
+
+<section class="quick-stats">
+ <div><strong>✦</strong><span><b>اختيارات متنوعة</b><small>أفلام ومسلسلات وأنمي</small></span></div>
+ <div><strong>▣</strong><span><b>قائمتك الخاصة</b><small>احفظ اللي بتحبه</small></span></div>
+ <div><strong>◉</strong><span><b>تجربة مرنة</b><small>على الموبايل والكمبيوتر</small></span></div>
+</section>
+
+<section class="content-section" id="library">
+ <div class="section-head"><div><small>اختار اللي على مزاجك</small><h2 id="sectionTitle">اكتشف المكتبة</h2></div><div class="head-right"><span id="count"></span><select id="sort"><option value="featured">مختارة ليك</option><option value="rating">الأعلى تقييماً</option><option value="year">الأحدث</option></select></div></div>
+ <div class="filters" id="genres"><button class="filter active" data-genre="الكل">الكل</button><button class="filter" data-genre="أكشن">أكشن</button><button class="filter" data-genre="مغامرة">مغامرة</button><button class="filter" data-genre="خيال">خيال علمي</button><button class="filter" data-genre="دراما">دراما</button><button class="filter" data-genre="كوميديا">كوميديا</button></div>
+ <div class="grid" id="grid"></div><div class="empty hide" id="empty"><b>⌕</b><h3>مفيش نتائج</h3><p>جرّب تبحث بكلمة تانية.</p></div>
+</section>
+
+<section class="spotlight">
+ <div class="spotlight-art"><span>HUTA<br>PLAY</span></div><div><small>YOUR NEXT FAVORITE</small><h2>كل مرة.. حكاية جديدة.</h2><p>مكتبة بتتجدد، وتجربة معمولة علشان تستمتع بالمحتوى اللي بتحبه.</p><button class="btn btn-blue" id="spotExplore">شوف المكتبة</button></div>
+</section>
+</main>
+<footer><a class="logo footer-logo" href="#"><span class="logo-icon">H</span><span>HUTA<span class="blue">PLAY</span></span></a><p>© 2026 HUTA PLAY. واجهة تجريبية — أضف فقط محتوى تملك حقوق عرضه أو ترخيصاً له.</p><button id="adminOpen">إدارة المحتوى</button></footer>
+
+<div class="overlay hide" id="details">
+ <div class="details-modal"><button class="x" data-close="details">×</button><div class="details-art" id="detailArt"></div><div class="details-content"><small id="detailType"></small><h2 id="detailTitle"></h2><div class="meta" id="detailMeta"></div><p id="detailDesc"></p><div class="actions"><button class="btn btn-blue" id="play">▶ ابدأ المشاهدة</button><button class="btn btn-glass" id="favorite">＋ قائمتي</button></div><small class="rights">التشغيل متاح للمحتوى المرخّص أو الفيديوهات التجريبية المرفقة.</small></div></div>
+</div>
+<div class="overlay hide" id="player"><div class="player-modal"><button class="x" data-close="player">×</button><div id="playerArea" class="player-area"></div><div class="player-title" id="playerTitle"></div></div></div>
+<div class="overlay hide" id="account"><div class="simple-modal"><button class="x" data-close="account">×</button><small>HUTA PLAY ACCOUNT</small><h2>أهلاً بيك 👋</h2><p>النسخة الحالية تحفظ المفضلة على جهازك. فعّل Supabase لتشغيل الحسابات والمزامنة بين الأجهزة.</p><button class="btn btn-blue" data-close="account">تمام</button></div></div>
+<div class="overlay hide" id="admin"><div class="admin-modal"><button class="x" data-close="admin">×</button><small>CONTENT MANAGEMENT</small><h2>إضافة عمل جديد</h2><p class="warning">لوحة تجريبية محلية فقط. لا تنشرها للعامة قبل إضافة تسجيل دخول وصلاحيات إدارة على الخادم.</p>
+<form id="addForm">
+<label>اسم العمل<input name="title" required maxlength="80"></label>
+<div class="two"><label>النوع<select name="type"><option>فيلم</option><option>مسلسل</option><option>أنمي</option></select></label><label>التصنيف<input name="genre" placeholder="أكشن" required></label></div>
+<div class="two"><label>سنة الإصدار<input name="year" type="number" min="1900" max="2100" value="2026"></label><label>التقييم<input name="rating" type="number" min="0" max="10" step=".1" value="8"></label></div>
+<label>رابط البوستر<input name="poster" type="url" placeholder="https://..."></label><label>رابط فيديو مرخّص<input name="video" type="url" placeholder="https://...mp4"></label><label>وصف<input name="description" maxlength="400"></label>
+<button class="btn btn-blue full">إضافة للمكتبة</button></form><div id="adminList"></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="src/app.js"></script>
+</body></html>
