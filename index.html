@@ -12,81 +12,743 @@
 .movie iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px}
 .movie h3{margin:10px 0 4px}
 .movie small{opacity:.7}
+
+<style>
+/* HUTA PLAY — ORIGINAL CINEMA THEME */
+
+:root {
+  --huta-red: #e50914;
+  --huta-bg: #08090d;
+  --huta-card: #15161c;
+  --huta-text: #ffffff;
+  --huta-muted: #a5a5ad;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--huta-bg);
+}
+
+body {
+  margin: 0;
+  background: var(--huta-bg);
+  color: var(--huta-text);
+  font-family: 'Cairo', sans-serif;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  min-height: 76px;
+  padding: 12px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #050609 15%, transparent);
+  transition: .3s;
+}
+
+.header.scrolled {
+  background: rgba(5,6,9,.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #ffffff12;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  color: white;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.logo-icon {
+  background: var(--huta-red);
+  padding: 3px 11px;
+  border-radius: 8px;
+  margin-left: 7px;
+  box-shadow: 0 0 20px #e5091455;
+}
+
+.blue {
+  color: var(--huta-red);
+}
+
+#nav {
+  display: flex;
+  gap: 25px;
+}
+
+.nav {
+  background: none;
+  border: 0;
+  color: #bbb;
+  font-family: inherit;
+  cursor: pointer;
+  font-size: 14px;
+  transition: .2s;
+}
+
+.nav:hover,
+.nav.active {
+  color: white;
+  font-weight: 800;
+}
+
+.nav.active::after {
+  content: "";
+  display: block;
+  width: 17px;
+  height: 3px;
+  margin: 4px auto 0;
+  background: var(--huta-red);
+  border-radius: 5px;
+}
+
+.head-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search {
+  background: #ffffff12;
+  border: 1px solid #ffffff25;
+  border-radius: 30px;
+  padding: 8px 13px;
+}
+
+.search input {
+  background: none;
+  color: white;
+  border: none;
+  outline: none;
+  width: 130px;
+  font-family: inherit;
+}
+
+.user {
+  background: var(--huta-red);
+  border: none;
+  border-radius: 50%;
+  width: 37px;
+  height: 37px;
+  color: white;
+  font-weight: bold;
+}
+
+/* CINEMATIC HERO */
+
+.hero {
+  min-height: 690px;
+  height: 90vh;
+  max-height: 850px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #08090d;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  transform: scale(1.02);
+  transition: background-image .5s;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(0deg, #08090d 0%, transparent 60%),
+    linear-gradient(90deg, #08090d 0%, #08090d99 40%, transparent 100%),
+    linear-gradient(180deg, #08090d77, transparent 30%);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  width: 650px;
+  max-width: 85%;
+  margin-right: 8%;
+  padding-top: 90px;
+}
+
+.tag {
+  color: #ff555d;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.tag i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--huta-red);
+  border-radius: 50%;
+  margin-left: 8px;
+  box-shadow: 0 0 12px var(--huta-red);
+}
+
+.hero-mini {
+  color: #ddd;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1.2;
+  font-weight: 900;
+  margin: 0 0 20px;
+  text-shadow: 0 5px 30px #000;
+}
+
+.hero h1 em {
+  color: var(--huta-red);
+  font-style: normal;
+}
+
+.hero-copy p {
+  color: #ddd;
+  font-size: 16px;
+  line-height: 2;
+  max-width: 470px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 13px;
+  margin-top: 28px;
+}
+
+.btn {
+  border: 0;
+  padding: 12px 25px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  transition: .25s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-blue {
+  background: var(--huta-red);
+  color: white;
+  box-shadow: 0 5px 25px #e5091440;
+}
+
+.btn-glass {
+  background: #ffffff20;
+  color: white;
+  border: 1px solid #ffffff30;
+  backdrop-filter: blur(10px);
+}
+
+.hero-tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 27px;
+  flex-wrap: wrap;
+}
+
+.hero-tags span {
+  color: #ddd;
+  border: 1px solid #ffffff30;
+  border-radius: 4px;
+  padding: 5px 12px;
+  font-size: 11px;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 45px;
+  left: 7%;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.hero-dots i,
+.hero-dots b {
+  width: 7px;
+  height: 7px;
+  background: #777;
+  border-radius: 10px;
+}
+
+.hero-dots b {
+  width: 25px;
+  background: var(--huta-red);
+}
+
+.hero-counter {
+  position: absolute;
+  bottom: 40px;
+  right: 8%;
+  color: white;
+  z-index: 3;
+}
+
+.hero-counter span {
+  color: var(--huta-red);
+}
+
+/* QUICK STATS */
+
+.quick-stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 30px 6%;
+  background: #101116;
+  border-top: 1px solid #ffffff10;
+  border-bottom: 1px solid #ffffff10;
+}
+
+.quick-stats > div {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.quick-stats strong {
+  font-size: 27px;
+  color: var(--huta-red);
+}
+
+.quick-stats b,
+.quick-stats small {
+  display: block;
+}
+
+.quick-stats small {
+  color: var(--huta-muted);
+  margin-top: 3px;
+}
+
+/* CONTENT */
+
+.content-section {
+  padding: 65px 5%;
+  min-height: 350px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.section-head small {
+  color: #ff555d;
+}
+
+.section-head h2 {
+  font-size: 29px;
+  margin: 5px 0;
+  font-weight: 900;
+}
+
+.head-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  color: var(--huta-muted);
+}
+
+.head-right select {
+  background: #18191f;
+  color: white;
+  border: 1px solid #ffffff20;
+  padding: 9px;
+  border-radius: 6px;
+}
+
+.filters {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  margin-bottom: 30px;
+  scrollbar-width: none;
+}
+
+.filter {
+  background: #191a20;
+  border: 1px solid #ffffff12;
+  color: #bbb;
+  padding: 8px 19px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.filter.active,
+.filter:hover {
+  background: var(--huta-red);
+  color: white;
+  border-color: var(--huta-red);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(175px,1fr));
+  gap: 23px;
+}
+
+.movie-card,
+.card,
+.grid > * {
+  transition: transform .3s, box-shadow .3s;
+}
+
+.grid > *:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 35px #0009;
+}
+
+.grid img {
+  border-radius: 10px;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px;
+  color: #aaa;
+}
+
+/* SPOTLIGHT */
+
+.spotlight {
+  margin: 30px 5% 75px;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border: 1px solid #ffffff13;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 10% 50%, #e5091422, transparent 40%),
+    #121319;
+}
+
+.spotlight-art {
+  min-width: 200px;
+  height: 180px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#e50914,#49030a);
+  border-radius: 12px;
+  font-size: 32px;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: 0 10px 40px #e5091433;
+}
+
+.spotlight small {
+  color: #ff555d;
+  letter-spacing: 3px;
+}
+
+.spotlight h2 {
+  font-size: 30px;
+  margin: 10px 0;
+}
+
+.spotlight p {
+  color: #aaa;
+  line-height: 1.9;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 35px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: #050609;
+  border-top: 1px solid #ffffff12;
+}
+
+footer p {
+  color: #777;
+  font-size: 12px;
+}
+
+footer button {
+  background: none;
+  color: #ff555d;
+  border: 1px solid #e5091455;
+  padding: 9px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* MODALS */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: #000d;
+  backdrop-filter: blur(12px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.hide {
+  display: none !important;
+}
+
+.details-modal,
+.player-modal,
+.simple-modal,
+.admin-modal {
+  background: #14151b;
+  color: white;
+  border: 1px solid #ffffff15;
+  border-radius: 15px;
+  width: min(850px,100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 80px #000;
+}
+
+.details-art {
+  min-height: 280px;
+  background-size: cover;
+  background-position: center;
+}
+
+.details-content {
+  padding: 25px;
+}
+
+.details-content h2 {
+  font-size: 30px;
+}
+
+.details-content p,
+.simple-modal p {
+  color: #bbb;
+  line-height: 1.9;
+}
+
+.x {
+  position: absolute;
+  top: 13px;
+  left: 15px;
+  z-index: 5;
+  background: #0009;
+  color: white;
+  border: 0;
+  font-size: 28px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.player-modal {
+  padding: 20px;
+}
+
+.player-area iframe,
+.player-area video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  border-radius: 10px;
+}
+
+.simple-modal,
+.admin-modal {
+  padding: 30px;
+}
+
+.admin-modal form {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-modal label {
+  display: grid;
+  gap: 7px;
+  color: #ddd;
+}
+
+.admin-modal input,
+.admin-modal select {
+  width: 100%;
+  background: #090a0f;
+  color: white;
+  border: 1px solid #ffffff22;
+  padding: 12px;
+  border-radius: 7px;
+  font-family: inherit;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.warning,
+.rights {
+  color: #ff777d;
+  font-size: 12px;
+}
+
+.full {
+  width: 100%;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 900;
+  background: var(--huta-red);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 8px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+  .header {
+    padding: 12px 4%;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  #nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    overflow-x: auto;
+  }
+
+  .nav {
+    white-space: nowrap;
+  }
+
+  .search input {
+    width: 85px;
+  }
+
+  .hero {
+    height: 75vh;
+    min-height: 600px;
+  }
+
+  .hero-copy {
+    margin-right: 5%;
+    padding-top: 130px;
+  }
+
+  .quick-stats {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .spotlight {
+    padding: 25px;
+  }
+}
+
+@media(max-width:550px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .header {
+    min-height: 110px;
+  }
+
+  .hero {
+    min-height: 650px;
+    height: 80vh;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .hero-copy p {
+    font-size: 13px;
+  }
+
+  .hero-ctas {
+    flex-wrap: wrap;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 13px;
+  }
+
+  .content-section {
+    padding: 40px 4%;
+  }
+
+  .section-head h2 {
+    font-size: 22px;
+  }
+
+  .spotlight {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px 4% 45px;
+  }
+
+  .spotlight-art {
+    width: 100%;
+  }
+
+  .quick-stats {
+    padding: 25px 5%;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
-
-<section class="movies">
-  <div class="movie">
-    <iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="Big Buck Bunny" allowfullscreen loading="lazy"></iframe>
-    <h3>Big Buck Bunny</h3>
-    <small>© Blender Foundation | CC BY 3.0</small>
-  </div>
-  <div class="movie">
-    <iframe src="https://www.youtube.com/embed/eRsGyueVLvQ" title="Sintel" allowfullscreen loading="lazy"></iframe>
-    <h3>Sintel</h3>
-    <small>© Blender Foundation | CC BY 3.0</small>
-  </div>
-  <div class="movie">
-    <iframe src="https://www.youtube.com/embed/R6MlUcmOul8" title="Tears of Steel" allowfullscreen loading="lazy"></iframe>
-    <h3>Tears of Steel</h3>
-    <small>© Blender Foundation | CC BY 3.0</small>
-  </div>
-</section>
-<body>
-<header class="header">
-  <a class="logo" href="#"><span class="logo-icon">H</span><span>HUTA<span class="blue">PLAY</span></span></a>
-  <nav id="nav">
-    <button class="nav active" data-filter="الكل">الرئيسية</button><button class="nav" data-filter="فيلم">أفلام</button>
-    <button class="nav" data-filter="مسلسل">مسلسلات</button><button class="nav" data-filter="أنمي">أنمي</button>
-    <button class="nav" data-filter="مفضلتي">قائمتي</button>
-  </nav>
-  <div class="head-tools"><label class="search"><span>⌕</span><input id="search" placeholder="ابحث عن عنوان..." type="search"></label><button class="user" id="userBtn">H</button></div>
-</header>
-
-<main>
-<section class="hero" id="hero">
- <div class="hero-bg" id="heroBg"></div><div class="hero-gradient"></div>
- <div class="hero-copy">
-  <div class="tag"><i></i> HUTA PLAY ORIGINAL EXPERIENCE</div>
-  <div class="hero-mini">ليلتك تستاهل حكاية عظيمة</div>
-  <h1 id="heroTitle">اكتشف عوالم<br><em>ملهاش حدود.</em></h1>
-  <p id="heroDesc">أفلام ومسلسلات وأنمي.. اختار عالمك وابدأ المشاهدة.</p>
-  <div class="hero-ctas"><button class="btn btn-blue" id="explore">استكشف المكتبة <b>←</b></button><button class="btn btn-glass" id="heroAbout">اعرف أكتر</button></div>
-  <div class="hero-tags"><span>4K READY</span><span>أفلام</span><span>مسلسلات</span><span>أنمي</span></div>
- </div>
- <div class="hero-dots"><b></b><i></i><i></i><i></i></div>
- <div class="hero-counter">01 <span>/</span> 04</div>
-</section>
-
-<section class="quick-stats">
- <div><strong>✦</strong><span><b>اختيارات متنوعة</b><small>أفلام ومسلسلات وأنمي</small></span></div>
- <div><strong>▣</strong><span><b>قائمتك الخاصة</b><small>احفظ اللي بتحبه</small></span></div>
- <div><strong>◉</strong><span><b>تجربة مرنة</b><small>على الموبايل والكمبيوتر</small></span></div>
-</section>
-
-<section class="content-section" id="library">
- <div class="section-head"><div><small>اختار اللي على مزاجك</small><h2 id="sectionTitle">اكتشف المكتبة</h2></div><div class="head-right"><span id="count"></span><select id="sort"><option value="featured">مختارة ليك</option><option value="rating">الأعلى تقييماً</option><option value="year">الأحدث</option></select></div></div>
- <div class="filters" id="genres"><button class="filter active" data-genre="الكل">الكل</button><button class="filter" data-genre="أكشن">أكشن</button><button class="filter" data-genre="مغامرة">مغامرة</button><button class="filter" data-genre="خيال">خيال علمي</button><button class="filter" data-genre="دراما">دراما</button><button class="filter" data-genre="كوميديا">كوميديا</button></div>
- <div class="grid" id="grid"></div><div class="empty hide" id="empty"><b>⌕</b><h3>مفيش نتائج</h3><p>جرّب تبحث بكلمة تانية.</p></div>
-</section>
-
-<section class="spotlight">
- <div class="spotlight-art"><span>HUTA<br>PLAY</span></div><div><small>YOUR NEXT FAVORITE</small><h2>كل مرة.. حكاية جديدة.</h2><p>مكتبة بتتجدد، وتجربة معمولة علشان تستمتع بالمحتوى اللي بتحبه.</p><button class="btn btn-blue" id="spotExplore">شوف المكتبة</button></div>
-</section>
-</main>
-<footer><a class="logo footer-logo" href="#"><span class="logo-icon">H</span><span>HUTA<span class="blue">PLAY</span></span></a><p>© 2026 HUTA PLAY. واجهة تجريبية — أضف فقط محتوى تملك حقوق عرضه أو ترخيصاً له.</p><button id="adminOpen">إدارة المحتوى</button></footer>
-
-<div class="overlay hide" id="details">
- <div class="details-modal"><button class="x" data-close="details">×</button><div class="details-art" id="detailArt"></div><div class="details-content"><small id="detailType"></small><h2 id="detailTitle"></h2><div class="meta" id="detailMeta"></div><p id="detailDesc"></p><div class="actions"><button class="btn btn-blue" id="play">▶ ابدأ المشاهدة</button><button class="btn btn-glass" id="favorite">＋ قائمتي</button></div><small class="rights">التشغيل متاح للمحتوى المرخّص أو الفيديوهات التجريبية المرفقة.</small></div></div>
-</div>
-<div class="overlay hide" id="player"><div class="player-modal"><button class="x" data-close="player">×</button><div id="playerArea" class="player-area"></div><div class="player-title" id="playerTitle"></div></div></div>
-<div class="overlay hide" id="account"><div class="simple-modal"><button class="x" data-close="account">×</button><small>HUTA PLAY ACCOUNT</small><h2>أهلاً بيك 👋</h2><p>النسخة الحالية تحفظ المفضلة على جهازك. فعّل Supabase لتشغيل الحسابات والمزامنة بين الأجهزة.</p><button class="btn btn-blue" data-close="account">تمام</button></div></div>
-<div class="overlay hide" id="admin"><div class="admin-modal"><button class="x" data-close="admin">×</button><small>CONTENT MANAGEMENT</small><h2>إضافة عمل جديد</h2><p class="warning">لوحة تجريبية محلية فقط. لا تنشرها للعامة قبل إضافة تسجيل دخول وصلاحيات إدارة على الخادم.</p>
-<form id="addForm">
-<label>اسم العمل<input name="title" required maxlength="80"></label>
-<div class="two"><label>النوع<select name="type"><option>فيلم</option><option>مسلسل</option><option>أنمي</option></select></label><label>التصنيف<input name="genre" placeholder="أكشن" required></label></div>
-<div class="two"><label>سنة الإصدار<input name="year" type="number" min="1900" max="2100" value="2026"></label><label>التقييم<input name="rating" type="number" min="0" max="10" step=".1" value="8"></label></div>
-<label>رابط البوستر<input name="poster" type="url" placeholder="https://..."></label><label>رابط فيديو مرخّص<input name="video" type="url" placeholder="https://...mp4"></label><label>وصف<input name="description" maxlength="400"></label>
-<button class="btn btn-blue full">إضافة للمكتبة</button></form><div id="adminList"></div></div></div>
-<div class="toast" id="toast"></div>
-<script src="src/app.js"></script>
-</body></html>
